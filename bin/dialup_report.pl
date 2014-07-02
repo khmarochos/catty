@@ -29,7 +29,7 @@ use FindBin qw($Bin);
 
 use lib "$Bin/../lib";
 
-# Модули пакета
+# п°п╬п╢я┐п╩п╦ п©п╟п╨п╣я┌п╟
 
 use catty::config qw(
     :CATTY_main
@@ -37,12 +37,12 @@ use catty::config qw(
 use catty::configure::dialup_report;
 use catty::user;
 
-# Библиотеки пакета
+# п▒п╦п╠п╩п╦п╬я┌п╣п╨п╦ п©п╟п╨п╣я┌п╟
 
 use debug qw(:debug_levels);
 use timestamp;
 
-# Библиотеки "слева"
+# п▒п╦п╠п╩п╦п╬я┌п╣п╨п╦ "я│п╩п╣п╡п╟"
 
 use Getopt::Std;
 use DBI;
@@ -50,7 +50,7 @@ use POSIX qw(strftime);
 use Crypt::PasswdMD5;
 
 
-# Получаем конфигурационные данные
+# п÷п╬п╩я┐я┤п╟п╣п╪ п╨п╬п╫я└п╦пЁя┐я─п╟я├п╦п╬п╫п╫я▀п╣ п╢п╟п╫п╫я▀п╣
 
 my $conf = catty::configure::dialup_report->new;
 unless (defined($conf)) {
@@ -58,7 +58,7 @@ unless (defined($conf)) {
 }
 
 
-# Открываем интерфейс протоколирования 
+# п·я┌п╨я─я▀п╡п╟п╣п╪ п╦п╫я┌п╣я─я└п╣п╧я│ п©я─п╬я┌п╬п╨п╬п╩п╦я─п╬п╡п╟п╫п╦я▐ 
 
 my ($debug, $debug_error) = debug->new(
     debug_level_logfile => $conf->{'log_level'},
@@ -74,7 +74,7 @@ unless (defined($debug->reopen)) {
 }
 
 
-# Подключаемся к SQL
+# п÷п╬п╢п╨п╩я▌я┤п╟п╣п╪я│я▐ п╨ SQL
 
 $debug->write(
     DEBUG_DEBUG, "Connecting to SQL-server at " . $conf->{'mysql_c_host'}
@@ -94,7 +94,7 @@ unless (defined($dbh_c)) {
 }
 
 
-# Который час?
+# п п╬я┌п╬я─я▀п╧ я┤п╟я│?
 
 my $time_now = strftime("%Y-%m-%d %H:%M:%S", localtime);
 $debug->write(
@@ -103,7 +103,7 @@ $debug->write(
 );
 
 
-# Производим проверки параметров запуска
+# п÷я─п╬п╦п╥п╡п╬п╢п╦п╪ п©я─п╬п╡п╣я─п╨п╦ п©п╟я─п╟п╪п╣я┌я─п╬п╡ п╥п╟п©я┐я│п╨п╟
 
 unless (defined($conf->{'start_time'})) {
     $debug->write(DEBUG_ERROR, "Undefined start time");
@@ -114,14 +114,14 @@ unless (defined($conf->{'stop_time'})) {
 }
 
 
-# Основной цикл
+# п·я│п╫п╬п╡п╫п╬п╧ я├п╦п╨п╩
 
 my $exit_status;
 
 MAIN_LOOP:
 while (1) {
 
-    # Подготавливаем SQL-транзакции
+    # п÷п╬п╢пЁп╬я┌п╟п╡п╩п╦п╡п╟п╣п╪ SQL-я┌я─п╟п╫п╥п╟п╨я├п╦п╦
         
     my $sth_get_manager = $dbh_c->prepare(
         "SELECT " .
@@ -155,7 +155,7 @@ while (1) {
     );
 
 
-    # Получаем сведения о менеджере
+    # п÷п╬п╩я┐я┤п╟п╣п╪ я│п╡п╣п╢п╣п╫п╦я▐ п╬ п╪п╣п╫п╣п╢п╤п╣я─п╣
 
     $debug->write(DEBUG_DEBUG, "Getting ID of manager");
     
@@ -185,7 +185,7 @@ while (1) {
     );
 
 
-    # Получаем список тарифных пакетов
+    # п÷п╬п╩я┐я┤п╟п╣п╪ я│п©п╦я│п╬п╨ я┌п╟я─п╦я└п╫я▀я┘ п©п╟п╨п╣я┌п╬п╡
 
     my %packages;
 
@@ -216,7 +216,7 @@ while (1) {
     }
 
 
-    # Запускаем цикл сбора данных
+    # п≈п╟п©я┐я│п╨п╟п╣п╪ я├п╦п╨п╩ я│п╠п╬я─п╟ п╢п╟п╫п╫я▀я┘
 
     my $step = 60;
 
@@ -229,7 +229,7 @@ while (1) {
             foreach my $package (sort {$a <=> $b} (keys(%packages))) {
                 print($packages{$package} . ";");
             }
-            print("Время\n");
+            print("п▓я─п╣п╪я▐\n");
         }
         $debug->write(
             DEBUG_DEBUG,
@@ -277,7 +277,7 @@ while (1) {
 }
 
 
-# Отключение от SQL-сервера
+# п·я┌п╨п╩я▌я┤п╣п╫п╦п╣ п╬я┌ SQL-я│п╣я─п╡п╣я─п╟
 
 $debug->write(
     DEBUG_DEBUG,
@@ -288,7 +288,7 @@ unless (defined($dbh_c->disconnect)) {
 }
 
 
-# Закрытие интерфейса протоколирования
+# п≈п╟п╨я─я▀я┌п╦п╣ п╦п╫я┌п╣я─я└п╣п╧я│п╟ п©я─п╬я┌п╬п╨п╬п╩п╦я─п╬п╡п╟п╫п╦я▐
 
 $debug->write(
     DEBUG_DEBUG, "My last words before I will close logs"

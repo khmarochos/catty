@@ -29,7 +29,7 @@ use FindBin qw($Bin);
 
 use lib "$Bin/../lib";
 
-# íÏÄÕÌÉ ÐÁËÅÔÁ
+# ÐœÐ¾Ð´ÑƒÐ»Ð¸ Ð¿Ð°ÐºÐµÑ‚Ð°
 
 use catty::config qw(
     :CATTY_main
@@ -37,19 +37,19 @@ use catty::config qw(
 use catty::configure::terminator_intercom;
 use catty::user;
 
-# âÉÂÌÉÏÔÅËÉ ÐÁËÅÔÁ
+# Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ Ð¿Ð°ÐºÐµÑ‚Ð°
 
 use debug qw(:debug_levels);
 use timestamp;
 
-# âÉÂÌÉÏÔÅËÉ "ÓÌÅ×Á"
+# Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ "ÑÐ»ÐµÐ²Ð°"
 
 use Getopt::Std;
 use DBI;
 use POSIX qw(strftime);
 
 
-# ðÏÌÕÞÁÅÍ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ ÄÁÎÎÙÅ
+# ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ
 
 my $conf = catty::configure::terminator_intercom->new;
 unless (defined($conf)) {
@@ -57,7 +57,7 @@ unless (defined($conf)) {
 }
 
 
-# ïÔËÒÙ×ÁÅÍ ÉÎÔÅÒÆÅÊÓ ÐÒÏÔÏËÏÌÉÒÏ×ÁÎÉÑ 
+# ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ 
 
 my ($debug, $debug_error) = debug->new(
     debug_level_logfile => $conf->{'log_level'},
@@ -73,7 +73,7 @@ unless (defined($debug->reopen)) {
 }
 
 
-# ðÏÄËÌÀÞÁÅÍÓÑ Ë SQL
+# ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ÑÑ Ðº SQL
 
 $debug->write(
     DEBUG_DEBUG, "Connecting to SQL-server at " . $conf->{'mysql_r_host'}
@@ -93,7 +93,7 @@ unless (defined($dbh_r)) {
 }
 
 
-# ðÏÌÕÞÁÅÍ ÓÐÉÓÏË ÓÅÓÓÉÊ ÄÌÑ Õ£ÂÂÉÎÇÁ
+# ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº ÑÐµÑÑÐ¸Ð¹ Ð´Ð»Ñ ÑƒÑ‘Ð±Ð±Ð¸Ð½Ð³Ð°
 
 my $sth_get_acct_session_id = $dbh_r->prepare(
     "SELECT AcctSessionId " .
@@ -151,7 +151,7 @@ while (<STDIN>) {
 }
 
 
-# ïÔËÌÀÞÅÎÉÅ ÏÔ SQL-ÓÅÒ×ÅÒÁ
+# ÐžÑ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ñ‚ SQL-ÑÐµÑ€Ð²ÐµÑ€Ð°
 
 $debug->write(
     DEBUG_DEBUG,
@@ -162,7 +162,7 @@ unless (defined($dbh_r->disconnect)) {
 }
 
 
-# óÂÒÏÓ ÓÅÓÓÉÊ
+# Ð¡Ð±Ñ€Ð¾Ñ ÑÐµÑÑÐ¸Ð¹
 
 foreach my $acct_session_id (@sessions_to_reset) {
 
@@ -198,7 +198,7 @@ foreach my $acct_session_id (@sessions_to_reset) {
 }
 
 
-# úÁËÒÙÔÉÅ ÉÎÔÅÒÆÅÊÓÁ ÐÒÏÔÏËÏÌÉÒÏ×ÁÎÉÑ
+# Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹ÑÐ° Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
 
 $debug->write(
     DEBUG_DEBUG, "My last words before I will close logs"

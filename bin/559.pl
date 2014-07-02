@@ -29,7 +29,7 @@ use FindBin qw($Bin);
 
 use lib "$Bin/../lib";
 
-# íÏÄÕÌÉ ÐÁËÅÔÁ
+# ÐœÐ¾Ð´ÑƒÐ»Ð¸ Ð¿Ð°ÐºÐµÑ‚Ð°
 
 use catty::config qw(
     :CATTY_main
@@ -37,12 +37,12 @@ use catty::config qw(
 use catty::configure::559;
 use catty::user;
 
-# âÉÂÌÉÏÔÅËÉ ÐÁËÅÔÁ
+# Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ Ð¿Ð°ÐºÐµÑ‚Ð°
 
 use debug qw(:debug_levels);
 use timestamp;
 
-# âÉÂÌÉÏÔÅËÉ "ÓÌÅ×Á"
+# Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ "ÑÐ»ÐµÐ²Ð°"
 
 use Getopt::Std;
 use LWP;
@@ -55,7 +55,7 @@ use Digest::MD5 qw(md5_hex);
 use POSIX qw(strftime);
 
 
-# ðÏÌÕÞÁÅÍ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ ÄÁÎÎÙÅ
+# ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ
 
 my $conf = catty::configure::559->new;
 unless (defined($conf)) {
@@ -63,7 +63,7 @@ unless (defined($conf)) {
 }
 
 
-# ïÔËÒÙ×ÁÅÍ ÉÎÔÅÒÆÅÊÓ ÐÒÏÔÏËÏÌÉÒÏ×ÁÎÉÑ 
+# ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ 
 
 my ($debug, $debug_error) = debug->new(
     debug_level_logfile => $conf->{'log_level'},
@@ -79,14 +79,14 @@ unless (defined($debug->reopen)) {
 }
 
 
-# ÷Ú×ÏÄÉÍ user-agent
+# Ð’Ð·Ð²Ð¾Ð´Ð¸Ð¼ user-agent
 
 my $ua = LWP::UserAgent->new(
     agent       => "559.pl; libwww/perl-$LWP::VERSION"
 );
 
 
-# ðÏÄËÌÀÞÁÅÍÓÑ Ë SQL
+# ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ÑÑ Ðº SQL
 
 $debug->write(
     DEBUG_DEBUG, "Connecting to SQL-server at " . $conf->{'mysql_c_host'}
@@ -140,7 +140,7 @@ unless (defined($dbh_f)) {
 }
 
 
-# ðÏÄÇÏÔÁ×ÌÉ×ÁÅÍ SQL-ÔÒÁÎÚÁËÃÉÉ
+# ÐŸÐ¾Ð´Ð³Ð¾Ñ‚Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ SQL-Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ð¸
 
 my $sth_get_manager = $dbh_c->prepare(
     "SELECT " .
@@ -267,7 +267,7 @@ my $sth_insert_radius_usergroup = $dbh_r->prepare(
 );
 
 
-# ëÏÔÏÒÙÊ ÞÁÓ?
+# ÐšÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ñ‡Ð°Ñ?
 
 my $time_now = strftime("%Y-%m-%d %H:%M:%S", localtime);
 $debug->write(
@@ -276,7 +276,7 @@ $debug->write(
 );
 
 
-# ðÏÌÕÞÁÅÍ ÎÏÍÅÒ ÍÅÎÅÄÖÅÒÁ
+# ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð½Ð¾Ð¼ÐµÑ€ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€Ð°
 
 $debug->write(DEBUG_DEBUG, "Getting ID of manager");
 
@@ -303,7 +303,7 @@ $debug->write(
 );
 
 
-# éÎÔÅÒÅÓÕÅÍÓÑ, ËÁËÏÇÏ ÈÕÑ ÏÔ ÎÁÓ ÈÏÔÑÔ
+# Ð˜Ð½Ñ‚ÐµÑ€ÐµÑÑƒÐµÐ¼ÑÑ, ÐºÐ°ÐºÐ¾Ð³Ð¾ Ñ…ÑƒÑ Ð¾Ñ‚ Ð½Ð°Ñ Ñ…Ð¾Ñ‚ÑÑ‚
 
 $debug->write(DEBUG_DEBUG, "Getting commands from STDIN");
 
@@ -332,7 +332,7 @@ while (<>) {
 }
 
 
-# ðÒÏ×ÏÄÉÍ ×ÓÅ ÔÒÁÎÚÁËÃÉÉ
+# ÐŸÑ€Ð¾Ð²Ð¾Ð´Ð¸Ð¼ Ð²ÑÐµ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ð¸
 
 $debug->write(DEBUG_DEBUG, "Running transactions");
 
@@ -340,7 +340,7 @@ for my $transaction (
     sort({$a->{'operator'} cmp $b->{'operator'}} @transactions)
 ) {
 
-    # ïÐÏÚÎÁ£Í ÏÐÅÒÁÔÏÒÁ
+    # ÐžÐ¿Ð¾Ð·Ð½Ð°Ñ‘Ð¼ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð°
 
     $debug->write(
         DEBUG_DEBUG,
@@ -386,10 +386,10 @@ for my $transaction (
     );
 
 
-    # ðÒÏ×ÏÄÉÍ ÎÅÐÏÓÒÅÄÓÔ×ÅÎÎÏ ÔÒÁÎÚÁËÃÉÀ
+    # ÐŸÑ€Ð¾Ð²Ð¾Ð´Ð¸Ð¼ Ð½ÐµÐ¿Ð¾ÑÑ€ÐµÐ´ÑÑ‚Ð²ÐµÐ½Ð½Ð¾ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ
 
 
-#    # ÷ËÌÀÞÁÅÍ ÒÅÖÉÍ ÒÕÞÎÏÇÏ ÐÏÄÔ×ÅÒÖÄÅÎÉÑ ÔÒÁÎÚÁËÃÉÊ
+#    # Ð’ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ Ñ€ÐµÐ¶Ð¸Ð¼ Ñ€ÑƒÑ‡Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ñ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ð¹
 #
 #    $debug->write(DEBUG_DEBUG, "Disabling autocommit for all of databases");
 #
@@ -429,7 +429,7 @@ for my $transaction (
         $debug->write(DEBUG_DEBUG, "Operator '$rname' is local");
 
 
-        # úÁÐÒÁÛÉ×ÁÅÍ id ÚÁÐÉÓÉ ÏÂ ÜÔÏÍ ÐÏÌØÚÏ×ÁÔÅÌÅ × ÔÁÂÌÉÃÅ users ÂÁÚÙ
+        # Ð—Ð°Ð¿Ñ€Ð°ÑˆÐ¸Ð²Ð°ÐµÐ¼ id Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð¾Ð± ÑÑ‚Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ users Ð±Ð°Ð·Ñ‹
         # catty
 
         $debug->write(
@@ -460,8 +460,8 @@ for my $transaction (
 
         unless (defined($catty_users_uid)) {
 
-            # åÓÌÉ id ÎÅÏÐÒÅÄÅÌ£Î, ÜÔÏ ÚÎÁÞÉÔ, ÞÔÏ ÐÏÌØÚÏ×ÁÔÅÌÑ ÐÏËÁ ÎÅÔ × ÂÁÚÅ
-            # É ÞÔÏ ÅÇÏ ÎÕÖÎÏ ×ÎÅÓÔÉ
+            # Ð•ÑÐ»Ð¸ id Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‘Ð½, ÑÑ‚Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ñ‚, Ñ‡Ñ‚Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð¿Ð¾ÐºÐ° Ð½ÐµÑ‚ Ð² Ð±Ð°Ð·Ðµ
+            # Ð¸ Ñ‡Ñ‚Ð¾ ÐµÐ³Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ð²Ð½ÐµÑÑ‚Ð¸
 
             $debug->write(
                 DEBUG_DEBUG,
@@ -470,7 +470,7 @@ for my $transaction (
 
             unless (defined($sth_insert_catty_users->execute(
                 $transaction->{'phonenum'},
-                "ðÏÌØÚÏ×ÁÔÅÌØ éÎÔÅÒÎÅÔ-559: $transaction->{'phonenum'}",
+                "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð˜Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚-559: $transaction->{'phonenum'}",
                 $conf->{'users_upack'},
                 $mid,
                 $mlevel,
@@ -496,7 +496,7 @@ for my $transaction (
         } else {
 
 
-            # åÓÌÉ id ÓÔÁÌ ÎÁÍ ÉÚ×ÅÓÔÅÎ, ÐÒÏ×ÅÒÑÅÍ ÕÒÏ×ÅÎØ ÄÏÓÔÕÐÁ
+            # Ð•ÑÐ»Ð¸ id ÑÑ‚Ð°Ð» Ð½Ð°Ð¼ Ð¸Ð·Ð²ÐµÑÑ‚ÐµÐ½, Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°
 
             $debug->write(
                 DEBUG_DEBUG,
@@ -542,7 +542,7 @@ for my $transaction (
         }
 
 
-        # úÁÐÒÁÛÉ×ÁÅÍ id ÚÁÐÉÓÉ ÏÂ ÜÔÏÍ ÐÏÌØÚÏ×ÁÔÅÌÅ × ÔÁÂÌÉÃÅ radcheck ÂÁÚÙ
+        # Ð—Ð°Ð¿Ñ€Ð°ÑˆÐ¸Ð²Ð°ÐµÐ¼ id Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð¾Ð± ÑÑ‚Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ radcheck Ð±Ð°Ð·Ñ‹
         # radius
 
         $debug->write(
@@ -609,7 +609,7 @@ for my $transaction (
 
         }
 
-        # úÁÐÒÁÛÉ×ÁÅÍ id ÚÁÐÉÓÉ ÏÂ ÜÔÏÍ ÐÏÌØÚÏ×ÁÔÅÌÅ × ÔÁÂÌÉÃÅ usergroup
+        # Ð—Ð°Ð¿Ñ€Ð°ÑˆÐ¸Ð²Ð°ÐµÐ¼ id Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð¾Ð± ÑÑ‚Ð¾Ð¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ðµ Ð² Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ usergroup
         # radius
 
 
@@ -660,7 +660,7 @@ for my $transaction (
         }
 
 
-        # îÁÞÉÓÌÑÅÍ ÐÌÁÔ£Ö
+        # ÐÐ°Ñ‡Ð¸ÑÐ»ÑÐµÐ¼ Ð¿Ð»Ð°Ñ‚Ñ‘Ð¶
 
         $transaction->{'payment_sum'} = ($transaction->{'seconds'} / 60) * 3;
 
@@ -739,7 +739,7 @@ for my $transaction (
     }
 
 
-    # è×ÁÓÔÁÅÍÓÑ:)
+    # Ð¥Ð²Ð°ÑÑ‚Ð°ÐµÐ¼ÑÑ:)
 
     $debug->write(
         DEBUG_INFO,
@@ -747,7 +747,7 @@ for my $transaction (
     );
 
 
-    # ïÔÓÙÌÁÅÍ SMS
+    # ÐžÑ‚ÑÑ‹Ð»Ð°ÐµÐ¼ SMS
 
     my $email;
 
@@ -790,7 +790,7 @@ for my $transaction (
     }
 
 
-    # úÁÐÉÓÙ×ÁÅÍ ÉÎÆÏÒÍÁÃÉÀ ÏÂ ÕÓÐÅÛÎÏ ÐÒÏ×ÅÄ£ÎÎÏÊ ÔÒÁÎÚÁËÃÉÉ
+    # Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¾Ð± ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ñ€Ð¾Ð²ÐµÐ´Ñ‘Ð½Ð½Ð¾Ð¹ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ð¸
 
     $debug->write(
         DEBUG_DEBUG,
@@ -813,7 +813,7 @@ for my $transaction (
     }
 
 
-#    # óÏÈÒÁÎÑÅÍ ÔÒÁÎÚÁËÃÉÀ
+#    # Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÑÐµÐ¼ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ
 #
 #    $debug->write(DEBUG_DEBUG, "Committing transacton for all of databases");
 #
@@ -835,7 +835,7 @@ for my $transaction (
 } continue {
 
 
-#    # ïÔÍÅÎÑÅÍ ÔÒÁÎÚÁËÃÉÀ
+#    # ÐžÑ‚Ð¼ÐµÐ½ÑÐµÐ¼ Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸ÑŽ
 #
 #    $debug->write(DEBUG_DEBUG, "Rolling back transacton for all of databases");
 #
@@ -857,7 +857,7 @@ for my $transaction (
 }
 
 
-# ïÔËÌÀÞÅÎÉÅ ÏÔ SQL-ÓÅÒ×ÅÒÁ
+# ÐžÑ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ñ‚ SQL-ÑÐµÑ€Ð²ÐµÑ€Ð°
 
 $debug->write(
     DEBUG_DEBUG,
@@ -884,7 +884,7 @@ unless (defined($dbh_f->disconnect)) {
 }
 
 
-# úÁËÒÙÔÉÅ ÉÎÔÅÒÆÅÊÓÁ ÐÒÏÔÏËÏÌÉÒÏ×ÁÎÉÑ
+# Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹ÑÐ° Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
 
 $debug->write(
     DEBUG_DEBUG, "My last words before I will close logs"

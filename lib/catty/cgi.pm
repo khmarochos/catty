@@ -34,7 +34,7 @@ sub new {
     bless($self, $class);
 
 
-    # ðÒÏÃÅÄÕÒÁ ÐÁÒÓÉÎÇÁ ÐÁÒÁÍÅÔÒÏ×
+    # ÐŸÑ€Ð¾Ñ†ÐµÐ´ÑƒÑ€Ð° Ð¿Ð°Ñ€ÑÐ¸Ð½Ð³Ð° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
 
     foreach (keys(%argv)) {
         if (/^-?templates/i) {
@@ -73,7 +73,7 @@ sub draw_error {
         print($text);
     } else {
         $self->{'error'} =
-            "ïÛÉÂËÁ ÐÒÉ ×ÙÐÏÌÎÅÎÉÉ Text::Template->fill_in(): " .
+            "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ð¸ Text::Template->fill_in(): " .
             $Text::Template::ERROR;
         return(undef)
     }

@@ -29,7 +29,7 @@ use FindBin qw($Bin);
 
 use lib "$Bin/../lib";
 
-# íÏÄÕÌÉ ÐÁËÅÔÁ
+# ÐœÐ¾Ð´ÑƒÐ»Ð¸ Ð¿Ð°ÐºÐµÑ‚Ð°
 
 use catty::config qw(
     :CATTY_main
@@ -37,12 +37,12 @@ use catty::config qw(
 use catty::configure::catwho;
 use catty::user;
 
-# âÉÂÌÉÏÔÅËÉ ÐÁËÅÔÁ
+# Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ Ð¿Ð°ÐºÐµÑ‚Ð°
 
 use debug qw(:debug_levels);
 use timestamp;
 
-# âÉÂÌÉÏÔÅËÉ "ÓÌÅ×Á"
+# Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸ "ÑÐ»ÐµÐ²Ð°"
 
 use Getopt::Std;
 use DBI;
@@ -50,7 +50,7 @@ use POSIX qw(strftime);
 use Crypt::PasswdMD5;
 
 
-# ðÏÌÕÞÁÅÍ ËÏÎÆÉÇÕÒÁÃÉÏÎÎÙÅ ÄÁÎÎÙÅ
+# ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ
 
 my $conf = catty::configure::catwho->new;
 unless (defined($conf)) {
@@ -58,7 +58,7 @@ unless (defined($conf)) {
 }
 
 
-# ïÔËÒÙ×ÁÅÍ ÉÎÔÅÒÆÅÊÓ ÐÒÏÔÏËÏÌÉÒÏ×ÁÎÉÑ 
+# ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÐ¼ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ 
 
 my ($debug, $debug_error) = debug->new(
     debug_level_logfile => $conf->{'log_level'},
@@ -74,7 +74,7 @@ unless (defined($debug->reopen)) {
 }
 
 
-# ðÏÄËÌÀÞÁÅÍÓÑ Ë SQL
+# ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ÑÑ Ðº SQL
 
 $debug->write(
     DEBUG_DEBUG, "Connecting to SQL-server at " . $conf->{'mysql_c_host'}
@@ -94,7 +94,7 @@ unless (defined($dbh_c)) {
 }
 
 
-# ëÏÔÏÒÙÊ ÞÁÓ?
+# ÐšÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ñ‡Ð°Ñ?
 
 my $time_now = strftime("%Y-%m-%d %H:%M:%S", localtime);
 $debug->write(
@@ -103,13 +103,13 @@ $debug->write(
 );
 
 
-# ïÓÎÏ×ÎÏÊ ÃÉËÌ
+# ÐžÑÐ½Ð¾Ð²Ð½Ð¾Ð¹ Ñ†Ð¸ÐºÐ»
 
 my $exit_status;
 
 while (1) {
 
-    # ðÏÄÇÏÔÁ×ÌÉ×ÁÅÍ SQL-ÔÒÁÎÚÁËÃÉÉ
+    # ÐŸÐ¾Ð´Ð³Ð¾Ñ‚Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ SQL-Ñ‚Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ð¸
         
     my $sth_get_manager = $dbh_c->prepare(
         "SELECT " .
@@ -141,7 +141,7 @@ while (1) {
     );
 
 
-    # ðÏÌÕÞÁÅÍ Ó×ÅÄÅÎÉÑ Ï ÍÅÎÅÄÖÅÒÅ
+    # ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÐ²ÐµÐ´ÐµÐ½Ð¸Ñ Ð¾ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€Ðµ
 
     $debug->write(DEBUG_DEBUG, "Getting ID of manager");
     
@@ -171,7 +171,7 @@ while (1) {
     );
 
 
-    # ðÏÌÕÞÁÅÍ ÓÐÉÓÏË ÓÅÓÓÉÊ
+    # ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº ÑÐµÑÑÐ¸Ð¹
 
     $debug->write(DEBUG_DEBUG, "Getting list of active sessions");
 
@@ -210,7 +210,7 @@ while (1) {
 }
 
 
-# ïÔËÌÀÞÅÎÉÅ ÏÔ SQL-ÓÅÒ×ÅÒÁ
+# ÐžÑ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ñ‚ SQL-ÑÐµÑ€Ð²ÐµÑ€Ð°
 
 $debug->write(
     DEBUG_DEBUG,
@@ -221,7 +221,7 @@ unless (defined($dbh_c->disconnect)) {
 }
 
 
-# úÁËÒÙÔÉÅ ÉÎÔÅÒÆÅÊÓÁ ÐÒÏÔÏËÏÌÉÒÏ×ÁÎÉÑ
+# Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹ÑÐ° Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
 
 $debug->write(
     DEBUG_DEBUG, "My last words before I will close logs"
