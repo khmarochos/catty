@@ -1,0 +1,9 @@
+#
+# $Id: nanny.conf.sample,v 1.1 2003/04/22 13:59:33 melnik Exp $
+#
+
+#
+pid_file		/usr/local/catty/var/run/nanny.pid
+log_file		/usr/local/catty/var/log/nanny.log
+log_level		5
+step			60

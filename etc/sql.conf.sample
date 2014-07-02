@@ -1,0 +1,15 @@
+#
+# $Id: sql.conf.sample,v 1.1 2003/04/22 13:59:33 melnik Exp $
+#
+
+# catty database
+mysql_c_host		localhost
+mysql_c_db		catty
+mysql_c_login		catty
+mysql_c_passwd		secret
+
+# radius database
+mysql_r_host		localhost
+mysql_r_db		radius
+mysql_r_login		radius
+mysql_r_passwd		secret
